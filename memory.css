@@ -1,0 +1,51 @@
+body{
+    margin: 0;
+    font-family: Lucida, sans-serif;
+}
+.content {
+    margin: 4em;
+}
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    height: 50px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: right;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 0px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    height: 50px;
+    margin: auto 1em;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    color: white;
+    float: left;
+}
+
+#cardCovered {
+    background-color: grey;
+    width: 120px;
+    height: 120px;
+    margin: 8px;
+    float: left;
+    border-radius: 25px;
+    border: 4px solid grey;
+}
+
+#cardUncovered {
+    background-color: blue;
+    width: 120px;
+    height: 120px;
+    margin: 8px;
+    float: left;
+    border-radius: 25px;
+    border: 4px solid grey;
+}
