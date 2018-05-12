@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
 import Navbar from './components/Navbar';
 import CardsList from './components/CardList';
-
-function shuffleArray(array) {
-    let i = array.length - 1;
-    for (; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-    return array;
-}
+import {newGame, showCard, handleFirstCardAndCheck} from './cards-utils';
 
 class App extends Component {
+
+    componentDidMount() {
+        newGame.call(this);
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -26,55 +21,9 @@ class App extends Component {
             firstCard: {},
             animation: true
         };
-        this.showCard = this.showCard.bind(this);
-        this.newGame = this.newGame.bind(this);
-        this.handleFirstCardAndCheck = this.handleFirstCardAndCheck.bind(this);
-    }
-
-    showCard(id) {
-        if (this.state.animation){
-            const cardsCopy = this.state.cards.slice(0);
-            this.handleFirstCardAndCheck(cardsCopy[id]);
-            cardsCopy[id].covered = false;
-            this.setState({cards: cardsCopy});
-        }
-    }
-
-    handleFirstCardAndCheck(card){
-        if (card.covered === true){
-            if (this.state.firstCard.color === undefined) {
-                this.setState({firstCard: card});
-
-            } else {
-                setTimeout(function () {
-                    if (this.state.firstCard.color !== card.color) {
-                        card.covered = true;
-                        let firstClickedCard = this.state.firstCard;
-                        firstClickedCard.covered = true;
-                        const cards2 = this.state.cards.map((c, i) =>
-                            i === firstClickedCard.id ? firstClickedCard : c
-                        );
-                        this.setState({cards: cards2});
-                    }
-                    this.setState({animation: true});
-                    this.setState({firstCard: {}});
-                }.bind(this), 800);
-                this.setState({animation: false});
-            }
-        }
-    }
-    newGame() {
-        const cardsShuffled = shuffleArray(this.state.cards);
-        for (let i =0; i<cardsShuffled.length; i++){
-            cardsShuffled[i].id= i;
-            cardsShuffled[i].covered= true;
-        }
-        this.setState({firstCard: {}});
-        this.setState({cards: cardsShuffled});
-    }
-
-    componentDidMount() {
-        this.newGame();
+        this.showCard = showCard.bind(this);
+        this.newGame = newGame.bind(this);
+        this.handleFirstCardAndCheck = handleFirstCardAndCheck.bind(this);
     }
 
     render() {
