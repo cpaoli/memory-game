@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = ({newGame}) => {
+const Navbar = ({newGame, over}) => {
     return(
         <div className="topnav">
                 <h2><a className="active">Memory Game</a></h2>

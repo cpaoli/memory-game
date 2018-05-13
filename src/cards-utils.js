@@ -51,3 +51,13 @@ export function handleFirstCardAndCheck(card){
         }
     }
 }
+
+export function over(array){
+    let i = array.length - 1;
+    for (; i > 0; i--) {
+        if(array[i].covered){
+            return false
+        }
+    }
+    return true;
+}
